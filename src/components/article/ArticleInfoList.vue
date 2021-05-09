@@ -33,7 +33,6 @@ export default {
   methods: {
     loadArticleInfos() {
       var that = this;
-              console.log(this.showType);
       if (that.showType == "category") {
         getArticleByCategory({
           pageNum: that.pageNum,

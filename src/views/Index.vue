@@ -6,11 +6,12 @@
           <img src="../assets/img/Flyzz.png" />
         </el-col>
 
-        <div class="search-box animate__animated animate__bounceInDown" v-on:keypress.stop="search">
+        <div class="search-box animate__animated animate__bounceInDown" v-on:keyup.enter.stop="search">
           <input
             class="search-txt"
             type="text"
             name=""
+            v-model="keywords"
             placeholder="请输入内容"
           />
           <span class="search-btn" v-on:click="search">
@@ -44,23 +45,27 @@ import ArticleCardList from "@/components/article/ArticleCardList.vue";
 
 export default {
   name: "index",
+  data(){
+    return {
+      keywords: "",
+    }
+  },
   components: {
     ProfileCard,
     ArticleCardList
   },
   mounted(){
-    this.$store.commit("changePageTitle","Flyzz的博客")
+    this.$store.commit("changePageTitle","Flyzz的博客");
   },
   methods: {
     scrollTo: function(){
       document.querySelector("#articlecard-show-starter").scrollIntoView(true);
     },
-    search: function(event){
-      let keywords = document.querySelector(".search-txt").value;
-      if(event instanceof KeyboardEvent && event.key!="Enter") return;
+    search: function(){
+      //if(event instanceof KeyboardEvent && event.key!="Enter") return;
       this.$router.push({path: 's/search',query:{
         "pageNum": 1,
-        "keywords": keywords
+        "keywords":this.keywords
       }})
     }
   }

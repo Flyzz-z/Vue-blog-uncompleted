@@ -22,7 +22,7 @@ export default {
         ArticleInfoList
     },
     mounted() {
-        this.$store.commit("changeColor","#867892")
+        this.$store.commit("changeColor","#867892");
     }
 }
 </script>
